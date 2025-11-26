@@ -1,0 +1,118 @@
+<controls:SurgeryWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._SilkNebula.Cyberpunk.Surgery"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    MinSize="600 500">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <!-- Верхняя панель со вкладками -->
+        <BoxContainer Name="TabContainer" Orientation="Horizontal" Separation="2">
+            <Button Name="SurgeryTab" Text="{Loc 'cuber-surgery-ui-menu-button'}" ToggleMode="True" />
+            <Button Name="CyberneticsTab" Text="{Loc 'cuber-cybernetics-ui-menu-button'}" ToggleMode="True" />
+        </BoxContainer>
+
+        <!-- Осная область -->
+        <PanelContainer PanelOverflow="Hidden">
+            <BoxContainer Orientation="Horizontal" Separation="16">
+
+                <!-- Левая панель с куклой -->
+                <PanelContainer MinSize="300,400" Name="DollContainer">
+                    <!-- Кукла для операций -->
+                    <Control Name="SurgeryDoll" Visible="false">
+                        <!-- Кликабельные зоны -->
+                        <Container>
+                            <!-- Голова -->
+                            <TextureButton Name="HeadButton"
+                                Texture="/Textures/_SilkNebula/Interface/Surgery/head.png"
+                                TexturePressed="/Textures/_SilkNebula/Interface/Surgery/head_highlight.png"
+                                Position="140,50" Size="60,60" />
+                            <!-- Торс -->
+                            <TextureButton Name="TorsoButton"
+                                Texture="/Textures/_SilkNebula/Interface/Surgery/torso.png"
+                                TexturePressed="/Textures/_SilkNebula/Interface/Surgery/torso_highlight.png"
+                                Position="130,110" Size="80,120" />
+                            <!-- Левая рука -->
+                            <TextureButton Name="LeftArmButton"
+                                Texture="/Textures/_SilkNebula/Interface/Surgery/arm_left.png"
+                                TexturePressed="/Textures/_SilkNebula/Interface/Surgery/arm_left_highlight.png"
+                                Position="70,110" Size="60,100" />
+                            <!-- Правая рука -->
+                            <TextureButton Name="RightArmButton"
+                                Texture="/Textures/_SilkNebula/Interface/Surgery/arm_right.png"
+                                TexturePressed="/Textures/_SilkNebula/Interface/Surgery/arm_right_highlight.png"
+                                Position="210,110" Size="60,100" />
+                            <!-- Левая нога -->
+                            <TextureButton Name="LeftLegButton"
+                                Texture="/Textures/_SilkNebula/Interface/Surgery/leg_left.png"
+                                TexturePressed="/Textures/_SilkNebula/Interface/Surgery/leg_left_highlight.png"
+                                Position="130,230" Size="40,120" />
+                            <!-- Правая нога -->
+                            <TextureButton Name="RightLegButton"
+                                Texture="/Textures/_SilkNebula/Interface/Surgery/leg_right.png"
+                                TexturePressed="/Textures/_SilkNebula/Interface/Surgery/leg_right_highlight.png"
+                                Position="170,230" Size="40,120" />
+                        </Container>
+                    </Control>
+
+                <!-- Кукла для кибернетики -->
+                <Control Name="CyberneticsDoll" Visible="false">
+                    <Container>
+                        <!-- Голова - слот для кибернетики -->
+                        <Container Name="HeadSlot" Position="140,50" Size="60,60">
+                            <TextureRect Texture="/Textures/_SilkNebula/Interface/Surgery/head_slot.png" />
+                            <Button Name="HeadSlotButton" Size="60,60" />
+                            <Label Name="HeadSlotLabel" Text="{Loc 'head-cyber-slot-ui-label'}"
+                                    HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                    FontColor="White" FontSize="10" />
+                        </Container>
+                        <Container>
+                        <!-- Торс - слот для кибернетики -->
+                        <Container Name="TorsoSlot" Position="130,110" Size="80,120">
+                            <TextureRect Texture="/Textures/_SilkNebula/Interface/Surgery/torso_slot.png" />
+                            <Button Name="TorsoSlotButton" Size="80,120" />
+                            <Label Name="TorsoSlotLabel" Text="{Loc 'torso-cyber-slot-ui-label'}"
+                                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                FontColor="White" FontSize="10" />
+                        </Container>
+                        <Container>
+                        <!-- Левая рука - слот для кибернетики -->
+                        <Container Name="LeftArmSlot" Position="70,110" Size="60,100">
+                            <TextureRect Texture="/Textures/_SilkNebula/Interface/Surgery/arm_left_slot.png" />
+                            <Button Name="LeftArmSlotButton" Size="60,100" />
+                            <Label Name="LeftArmSlotLabel" Text="{Loc 'left-arm-cyber-slot-ui-label'}"
+                                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                FontColor="White" FontSize="10" />
+                        </Container>
+                        <Container>
+                        <!-- Правая рука - слот для кибернетики -->
+                        <Container Name="RightArmSlot" Position="210,110" Size="60,100">
+                            <TextureRect Texture="/Textures/_SilkNebula/Interface/Surgery/arm_right_slot.png" />
+                            <Button Name="RightArmSlotButton" Size="60,100" />
+                            <Label Name="RightArmSlotLabel" Text="{Loc 'right-arm-cyber-slot-ui-label'}"
+                                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                FontColor="White" FontSize="10" />
+                        </Container>
+                        <Container>
+                        <!-- Левая нога - слот для кибернетики -->
+                        <Container Name="LeftLegSlot" Position="130,230" Size="40,120">
+                            <TextureRect Texture="/Textures/_SilkNebula/Interface/Surgery/leg_left_slot.png" />
+                            <Button Name="LeftLegSlotButton" Size="40,120" />
+                            <Label Name="LeftLegSlotLabel" Text="{Loc 'left-leg-cyber-slot-ui-label'}"
+                                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                FontColor="White" FontSize="10" />
+                        </Container>
+                        <Container>
+                        <!-- Правая нога - слот для кибернетики -->
+                        <Container Name="RightLegSlot" Position="170,230" Size="40,120">
+                            <TextureRect Texture="/Textures/_SilkNebula/Interface/Surgery/leg_right_slot.png" />
+                            <Button Name="RightLegSlotButton" Size="40,120" />
+                            <Label Name="RightLegSlotLabel" Text="{Loc 'right-leg-cyber-slot-ui-label'}"
+                                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                FontColor="White" FontSize="10" />
+                        </Container>
+                    </Container>
+                </Control>
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+</interface>
