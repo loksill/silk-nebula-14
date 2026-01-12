@@ -28,6 +28,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Server._SilkNebula.ElectricDemon;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Guidebook;
 
@@ -38,7 +39,7 @@ namespace Content.Server.Power.Components
     /// </summary>
     [RegisterComponent]
     [Virtual]
-    [Access(typeof(BatterySystem))]
+    [Access(typeof(BatterySystem), (ElectricDemonSystem))] // SilkNebula Edit
     public partial class BatteryComponent : Component
     {
         public string SolutionName = "battery";

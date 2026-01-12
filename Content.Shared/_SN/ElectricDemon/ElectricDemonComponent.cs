@@ -23,4 +23,7 @@ public sealed partial class ElectricDemonComponent : Component
 
     [DataField]
     public float Elec = 0;
+
+    [DataField]
+    public float maxDraining = 10;
 }

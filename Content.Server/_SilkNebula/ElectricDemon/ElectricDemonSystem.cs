@@ -74,8 +74,17 @@ public sealed partial class ElectricDemonSystem : EntitySystem
 
     private void OnDrainingElectricity(Entity<ElectricDemonComponent> ent, Entity<BatteryComponent> comp, ref DrainingElectricityEvent args)
     {
-        if (!HasComp<ApcComponent>(args.Target.Id) & comp.Comp.CurrentCharge <= 0)
-            return;
+        // if (
+            // !HasComp<ApcComponent>(args.Target.Id) &
+            // comp.Comp.CurrentCharge <= 0)
+            // return;
+
+        if (comp.Comp.CurrentCharge <= 0)
+        {
+            _popup.PopupEntity(Loc.GetString("elecdemon-is-not-apc"), ent);
+        }
+
+        comp.Comp.CurrentCharge -= ent.Comp.maxDraining;
     }
 
     private void OnElecAmountChanged(Entity<ElectricDemonComponent> demon, ref ElecAmountChangedEvent args)
