@@ -14,6 +14,8 @@ using Content.Server.PowerCell;
 using Content.Server.Stunnable;
 using Content.Server.Zombies;
 using Content.Shared._Shitmed.Body.Components;
+using Content.Shared._SN.ElectricDemon;
+using Content.Shared._SN.ElectricDemon.Actions;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Events;
 using Content.Shared.Decals;
