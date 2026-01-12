@@ -70,17 +70,9 @@ public sealed partial class ElectricDemonSystem : EntitySystem
             _actions.AddAction(demon, actionId);
     }
 
-    private static bool TryUseAbility(Entity<BatteryComponent> comp, ref DrainingElectricityEvent ev)
+    private void OnDrainingElectricity(Entity<ElectricDemonComponent> demon, Entity<BatteryComponent> comp, ref DrainingElectricityEvent ev)
     {
         if (!HasComp<ApcComponent>(ev.Target.Id) & comp.Comp.CurrentCharge <= 0)
-            return false;
-        else
-            return true;
-    }
-
-    private void OnDrainingElectricity(Entity<ElectricDemonComponent> demon, ref DrainingElectricityEvent ev)
-    {
-        if (!TryUseAbility(ev.Target.Id))
             return;
     }
 
