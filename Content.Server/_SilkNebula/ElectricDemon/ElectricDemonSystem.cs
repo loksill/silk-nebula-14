@@ -1,5 +1,5 @@
-using Content.Goobstation.Shared.ElectricDemon;
-using Content.Goobstation.Shared.ElectricDemon.Actions;
+using Content.Shared._SN.ElectricDemon;
+using Content.Shared._SN.ElectricDemon.Actions;
 using Content.Goobstation.Shared.Supermatter.Components;
 using Content.Server.Actions;
 using Content.Server.Antag.Components;
@@ -32,7 +32,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Content.Goobstation.Server.ElectricDemon;
+namespace Content.Server._SilkNebula.ElectricDemon;
 
 public sealed partial class ElectricDemonSystem : EntitySystem
 {
@@ -67,12 +67,14 @@ public sealed partial class ElectricDemonSystem : EntitySystem
 
         // Add base actions
         foreach (var actionId in demon.Comp.BaseDemonActions)
+        {
             _actions.AddAction(demon, actionId);
+        }    
     }
 
-    private void OnDrainingElectricity(Entity<ElectricDemonComponent> demon, Entity<BatteryComponent> comp, ref DrainingElectricityEvent ev)
+    private void OnDrainingElectricity(Entity<ElectricDemonComponent> ent, Entity<BatteryComponent> comp, ref DrainingElectricityEvent args)
     {
-        if (!HasComp<ApcComponent>(ev.Target.Id) & comp.Comp.CurrentCharge <= 0)
+        if (!HasComp<ApcComponent>(args.Target.Id) & comp.Comp.CurrentCharge <= 0)
             return;
     }
 

@@ -6,7 +6,7 @@ using Content.Shared.Polymorph;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
-namespace Content.Goobstation.Shared.ElectricDemon;
+namespace Content.Shared._SN.ElectricDemon;
 
 public sealed partial class ElectricDemonComponent : Component
 {
