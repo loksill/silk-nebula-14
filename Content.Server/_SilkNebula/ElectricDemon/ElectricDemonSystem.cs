@@ -27,14 +27,10 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Content.Shared.Store.Components;
 using Content.Server.Store.Systems;
 using Robust.Server.GameObjects;
+using System.Runtime.CompilerServices;
 
 namespace Content.Server._SilkNebula.ElectricDemon;
 
@@ -89,7 +85,7 @@ public sealed partial class ElectricDemonSystem : EntitySystem
         ent.Comp.Elec += ent.Comp.maxDraining;
     }
 
-    private void OnOpenShop(Entity<ElectricDemonComponent> ent, ref ElectricDemonShopEvent args)
+    private void OnOpenShop(Entity<ElectricDemonComponent> ent, ref ElectricDemonShopActionEvent args)
     {
         if (!TryComp<StoreComponent>(ent, out var store))
             return;

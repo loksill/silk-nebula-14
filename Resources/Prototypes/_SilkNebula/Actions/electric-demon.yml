@@ -85,4 +85,4 @@
       sprite: _Goobstation/Wizard/actions.rsi
       state: mindswap
   - type: InstantAction
-    event: !type:ElectricDemonShopEvent
+    event: !type:ElectricDemonShopActionEvent
