@@ -39,7 +39,7 @@ namespace Content.Server.Power.Components
     /// </summary>
     [RegisterComponent]
     [Virtual]
-    [Access(typeof(BatterySystem), (ElectricDemonSystem))] // SilkNebula Edit
+    // [Access(typeof(BatterySystem))]  SilkNebula Edit
     public partial class BatteryComponent : Component
     {
         public string SolutionName = "battery";

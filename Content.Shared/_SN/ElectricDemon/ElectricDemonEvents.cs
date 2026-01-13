@@ -4,4 +4,4 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._SN.ElectricDemon;
 
 [ByRefEvent]
-public record struct ElecAmountChangedEvent(EntityUid User, float Amount);
+public record struct ElecAmountChangedEvent(EntityUid User, float Amount, EntityUid Target);

@@ -13,9 +13,9 @@ public sealed partial class ElectricDemonComponent : Component
     [DataField]
     public List<EntProtoId> BaseDemonActions = new()
     {
-        "ActionElectricDemonShop",
         "ActionMoveToCable",
-        "ActionDrainingElectricity"
+        "ActionDrainingElectricity",
+        "ActionElectricDemonShop"
     };
 
     [DataField]

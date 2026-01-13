@@ -1,0 +1,88 @@
+- type: entity
+  parent: BaseAction
+  id: BaseElectricDemonTargetAction
+  components:
+  - type: Action
+    raiseOnUser: true
+  - type: EntityTargetAction
+    canTargetSelf: false
+
+- type: entity
+  parent: BaseAction
+  id: BaseElectricDemonAction
+  components:
+  - type: Action
+    raiseOnUser: true
+  - type: InstantAction
+    canTargetSelf: false
+
+- type: entity
+  parent: BaseElectricDemonTargetAction
+  id: ActionDrainingElectricity
+  name: draining electricity
+  description: Drain the electricity!
+  components:
+  - type: Action
+    raiseOnUser: true
+    useDelay: 1
+    icon:
+      sprite: _Goobstation/Wizard/actions.rsi
+      state: mindswap
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      requireAll: true
+      components:
+      - ApcComponent
+    event: !type:DrainingElectricityEvent
+      sound:
+        path: /Audio/_Goobstation/Wizard/mandswap.ogg
+      performerStunDuration: 5
+      targetStunDuration: 5
+  - type: Sprite
+    sprite: _Goobstation/Wizard/actions.rsi
+    state: mindswap
+#  - type: ActionUpgrade
+#    effectedLevels:
+#      2: ActionMindSwapII
+#      3: ActionMindSwapIII
+
+- type: entity
+  parent: BaseElectricDemonTargetAction
+  id: ActionMoveToCable
+  name: move to cable
+  description: Enter the cable and use it to move around the station.
+  components:
+  - type: Action
+    raiseOnUser: true
+    useDelay: 1
+    icon:
+      sprite: _Goobstation/Wizard/actions.rsi
+      state: mindswap
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      requireAll: true
+      components:
+      - CableComponent
+    event: !type:MoveToCableEvent
+      sound:
+        path: /Audio/_Goobstation/Wizard/mandswap.ogg
+      performerStunDuration: 5
+      targetStunDuration: 5
+  - type: Sprite
+    sprite: _Goobstation/Wizard/actions.rsi
+    state: mindswap
+
+- type: entity
+  parent: BaseElectricDemonAction
+  id: ActionElectricDemonShop
+  name: open shop
+  description: Open your shop.
+  components:
+  - type: Action
+    icon:
+      sprite: _Goobstation/Wizard/actions.rsi
+      state: mindswap
+  - type: InstantAction
+    event: !type:ElectricDemonShopEvent

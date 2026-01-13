@@ -22,7 +22,6 @@ using Content.Shared.Decals;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Ninja.Components;
 using Robust.Server.Containers;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -33,6 +32,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Content.Shared.Store.Components;
+using Content.Server.Store.Systems;
+using Robust.Server.GameObjects;
 
 namespace Content.Server._SilkNebula.ElectricDemon;
 
@@ -47,6 +49,8 @@ public sealed partial class ElectricDemonSystem : EntitySystem
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private readonly StoreSystem _store = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -74,26 +78,21 @@ public sealed partial class ElectricDemonSystem : EntitySystem
         }    
     }
 
-    private void OnDrainingElectricity(Entity<ElectricDemonComponent> ent, Entity<BatteryComponent> comp, ref DrainingElectricityEvent args)
+    private void OnDrainingElectricity(Entity<ElectricDemonComponent> ent, Entity<BatteryComponent> battery, ref DrainingElectricityEvent args)
     {
-        // if (
-            // !HasComp<ApcComponent>(args.Target.Id) &
-            // comp.Comp.CurrentCharge <= 0)
-            // return;
-
-        if (comp.Comp.CurrentCharge <= 0)
+        if (battery.Comp.CurrentCharge < 10)
         {
             _popup.PopupEntity(Loc.GetString("elecdemon-is-not-apc"), ent);
         }
 
-        comp.Comp.CurrentCharge -= ent.Comp.maxDraining;
+        battery.Comp.CurrentCharge -= ent.Comp.maxDraining;
+        ent.Comp.Elec += ent.Comp.maxDraining;
     }
 
-    private void OnElecAmountChanged(Entity<ElectricDemonComponent> demon, ref ElecAmountChangedEvent args)
+    private void OnOpenShop(Entity<ElectricDemonComponent> ent, ref ElectricDemonShopEvent args)
     {
-        if (!_mind.TryGetMind(args.User, out var mindId, out var mind))
+        if (!TryComp<StoreComponent>(ent, out var store))
             return;
-
-        demon.Comp.Elec += args.Amount;
+        _store.ToggleUi(ent, ent, store);
     }
 }
