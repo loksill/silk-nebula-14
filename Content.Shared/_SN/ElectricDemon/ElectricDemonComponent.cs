@@ -22,8 +22,11 @@ public sealed partial class ElectricDemonComponent : Component
     public List<EntityUid>? ActionEntities;
 
     [DataField]
-    public float Elec = 0;
+    public float ElecAmount = 0;
 
     [DataField]
     public float maxDraining = 10;
+
+    [DataField]
+    public int DemonKoins = 0;
 }

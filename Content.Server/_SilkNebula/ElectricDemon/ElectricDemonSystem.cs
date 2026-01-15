@@ -1,35 +1,25 @@
-using Content.Shared._SN.ElectricDemon;
-using Content.Shared._SN.ElectricDemon.Actions;
 using Content.Goobstation.Shared.Supermatter.Components;
 using Content.Server.Actions;
 using Content.Server.Antag.Components;
 using Content.Server.Atmos.Components;
-using Content.Server.EntityEffects.Effects;
 using Content.Server.Mind;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
-using Content.Server.Power.Components;
-using Content.Server.Power.EntitySystems;
 using Content.Server.PowerCell;
+using Content.Server.Store.Systems;
 using Content.Server.Stunnable;
 using Content.Server.Zombies;
 using Content.Shared._Shitmed.Body.Components;
 using Content.Shared._SN.ElectricDemon;
 using Content.Shared._SN.ElectricDemon.Actions;
-using Content.Shared.Actions;
-using Content.Shared.Actions.Events;
-using Content.Shared.Decals;
-using Content.Shared.Item.ItemToggle.Components;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Store.Components;
 using Robust.Server.Containers;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Shared.Store.Components;
-using Content.Server.Store.Systems;
-using Robust.Server.GameObjects;
 using System.Runtime.CompilerServices;
 
 namespace Content.Server._SilkNebula.ElectricDemon;
@@ -71,18 +61,14 @@ public sealed partial class ElectricDemonSystem : EntitySystem
         foreach (var actionId in demon.Comp.BaseDemonActions)
         {
             _actions.AddAction(demon, actionId);
-        }    
+        }
     }
 
-    private void OnDrainingElectricity(Entity<ElectricDemonComponent> ent, Entity<BatteryComponent> battery, ref DrainingElectricityEvent args)
+    private void OnDrainingElectricity(Entity<ElectricDemonComponent> ent, ref DrainingElectricityEvent args)
     {
-        if (battery.Comp.CurrentCharge < 10)
-        {
-            _popup.PopupEntity(Loc.GetString("elecdemon-is-not-apc"), ent);
-        }
-
-        battery.Comp.CurrentCharge -= ent.Comp.maxDraining;
-        ent.Comp.Elec += ent.Comp.maxDraining;
+        var EC = ent.Comp;
+        EC.ElecAmount += EC.maxDraining;
+        EC.DemonKoins += (int)(EC.maxDraining / 2);
     }
 
     private void OnOpenShop(Entity<ElectricDemonComponent> ent, ref ElectricDemonShopActionEvent args)
